@@ -8,6 +8,7 @@
             <th scope="col">قیمت</th>
             <th scope="col">تعداد</th>
             <th scope="col">قیمت کل</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -18,8 +19,20 @@
             <td>{{ item.price }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.total_price }}</td>
+            <td><a href="{% url 'order:cart_remove' item.product.id %}">حذف</a></td>
         </tr>
         {% endfor %}
+        <tr>
+            <td>
+                قیمت کل
+            </td>
+            <td colspan="4">
+
+            </td>
+            <td>
+                {{ cart.get_total_price }}
+            </td>
+        </tr>
         </tbody>
     </table>
 {% endblock %}
