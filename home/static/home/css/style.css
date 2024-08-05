@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Raleway", Helvetica, sans-serif;
+  color: #444;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.header h1 {
+    float: left;
+}
+
+.nav {
+    text-align: right;
+}
+
+.nav ul li {
+    display: inline;
+    padding: 0 15px;
+}
+
+.nav ul li a {
+    color: rgba(255, 255, 255, 0.5);
+    transition: color .2s ease-in-out;
+}
+
+.nav ul li a:hover {
+    color: #ffffff;
+}
+
+.top-menu {
+    padding: 40px;
+}
+
+.header {
+    background-image: url("../image/dark_tint.png") ,url("../image/5d58f9ff-781a-424a-a347-e5526879dbe6.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.btn-blue {
+    background-color: #3cadd4;
+    color: #ffffff !important;
+}
+
+.btn-gray {
+    background-color: #fff;
+    color: #444 !important;
+}
+
+.btn-big {
+    font-size: 20px !important;
+    padding: 17px 35px;
+}
+
+.btn-dark {
+    background-color: #383b43;
+    color: #ffffff !important;
+}
+
+.banner-content {
+    text-align: center;
+    color: #ffffff;
+    padding: 150px 0;
+}
+
+.banner-content h2 {
+    font-size: 60px;
+    line-height: 130px;
+}
+
+.banner-content p {
+    font-size: 22px;
+    margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

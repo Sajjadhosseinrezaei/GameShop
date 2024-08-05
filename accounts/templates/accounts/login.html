@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+<form method="post" class="form-control">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="ورود">
+    <br><br>
+    <a href="{% url 'accounts:register' %}">ثبت نام</a>
+</form>
+{% endblock %}
