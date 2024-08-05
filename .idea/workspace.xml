@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3cca5f05-66cc-40c9-89f3-52971d9e8d90" name="Changes" comment="migrations for change and add models">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/home/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/cart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +128,8 @@
       <workItem from="1722757081244" duration="9686000" />
       <workItem from="1722840682163" duration="2809000" />
       <workItem from="1722846090847" duration="515000" />
+      <workItem from="1722849795973" duration="866000" />
+      <workItem from="1722850667827" duration="1750000" />
     </task>
     <task id="LOCAL-00001" summary="migrations for change and add models">
       <option name="closed" value="true" />

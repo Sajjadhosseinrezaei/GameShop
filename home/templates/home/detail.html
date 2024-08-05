@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <form action="{% url 'order:cart_add' product.id %}">
+    <form action="{% url 'order:cart_add' product.id %}" method="post">
     {% csrf_token %}
     {{ form.as_div}}
     <input type="submit" value="اضافه به سبد خرید">
