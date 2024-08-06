@@ -14,6 +14,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}">ثبت نام</a>
                     <a class="nav-link" href="{% url 'accounts:login' %}">وارد شدن</a>
                 {% endif %}
+                <a class="navbar-brand" href="{% url 'order:cart_detail' %}">سبد خرید {{ cart|length }}</a>
                 
             </div>
         </div>
