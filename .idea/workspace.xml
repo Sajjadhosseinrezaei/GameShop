@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cca5f05-66cc-40c9-89f3-52971d9e8d90" name="Changes" comment="migrations for change and add models">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GemeShop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/GemeShop/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/managers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +149,7 @@
       <workItem from="1722947117405" duration="2864000" />
       <workItem from="1723012937148" duration="2883000" />
       <workItem from="1723016458832" duration="5320000" />
-      <workItem from="1723026373034" duration="25000" />
+      <workItem from="1723026373034" duration="1257000" />
     </task>
     <task id="LOCAL-00001" summary="migrations for change and add models">
       <option name="closed" value="true" />
