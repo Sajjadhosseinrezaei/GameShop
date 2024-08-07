@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه پرداخت</title>
+    <!-- لینک به فایل‌های CSS Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- لینک به فایل CSS سفارشی -->
+    <link rel="stylesheet" href="{% static 'order/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">پرداخت</h2>
+                        <form id="payment-form">
+                            <div class="form-group">
+                                <label for="name">نام کامل:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">ایمیل:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-number">شماره کارت:</label>
+                                <input type="text" class="form-control" id="card-number" name="card-number" maxlength="16" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="expiry-date">تاریخ انقضا:</label>
+                                    <input type="text" class="form-control" id="expiry-date" name="expiry-date" placeholder="MM/YY" maxlength="5" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cvv">CVV:</label>
+                                    <input type="text" class="form-control" id="cvv" name="cvv" maxlength="4" required>
+                                </div>
+                            </div>
+                            <button type="submit" id="pay-button" class="btn btn-primary btn-block">
+                                <a href="{% url 'order:order_verify' order.id %}" id="pay-button-text">{{ order.get_total_price }}پرداخت</a>
+                                <span id="pay-button-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- لینک به فایل‌های JavaScript Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- فایل JavaScript سفارشی -->
+    <script src="{% static 'order/js/scripts.js' %}"></script>
+</body>
+</html>

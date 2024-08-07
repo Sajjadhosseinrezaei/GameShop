@@ -5,6 +5,7 @@ from .forms import AddCartForm
 from .cart import Cart
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order, OrderItem
+from django.contrib import messages
 
 
 # Create your views here.
@@ -52,3 +53,20 @@ class OrderCreateView(LoginRequiredMixin, View):
                                      quantity=item['quantity'])
             cart.clear()
         return redirect('order:detail_order', order.id)
+
+
+class OrderPayView(LoginRequiredMixin, View):
+    template_name = 'order/payment.html'
+
+    def get(self, request, order_id):
+        order = Order.objects.get(id=order_id)
+        return render(request, self.template_name, {'order': order})
+
+
+class OrderPayVerifyView(LoginRequiredMixin, View):
+    def get(self, request, order_id):
+        order = Order.objects.get(id=order_id)
+        order.paid = True
+        order.save()
+        messages.success(request, "پرداخت با موفقیت انجام شد")
+        return redirect('home:home')
