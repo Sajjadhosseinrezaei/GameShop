@@ -1,6 +1,7 @@
 from django.db import models
 from home.models import Product
 from django.contrib.auth import get_user_model
+from .managers import OrderManager
 
 
 # Create your models here.
@@ -11,6 +12,8 @@ class Order(models.Model):
     paid = models.BooleanField(default=False, verbose_name='پرداخت')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='آخرین بروزرسانی')
+
+    objects = OrderManager()
 
     class Meta:
         ordering = ['paid', '-created']

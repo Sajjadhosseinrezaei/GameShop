@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from home.models import Product
-from .forms import AddCartForm
+from .forms import AddCartForm, OutputForm
 from .cart import Cart
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order, OrderItem
 from django.contrib import messages
+import csv
 
 
 # Create your views here.
@@ -58,6 +59,13 @@ class OrderCreateView(LoginRequiredMixin, View):
 class OrderPayView(LoginRequiredMixin, View):
     template_name = 'order/payment.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        order = Order.objects.get(id=kwargs['order_id'])
+        if order.get_total_price() <= 0:
+            messages.success(request, "سبد خرید خالی است")
+            return redirect('order:cart_detail')
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request, order_id):
         order = Order.objects.get(id=order_id)
         return render(request, self.template_name, {'order': order})
@@ -70,3 +78,30 @@ class OrderPayVerifyView(LoginRequiredMixin, View):
         order.save()
         messages.success(request, "پرداخت با موفقیت انجام شد")
         return redirect('home:home')
+
+
+class OrderReportView(LoginRequiredMixin, View):
+    template_name = 'order/order_report.html'
+
+    def get(self, request):
+        form = OutputForm
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = OutputForm(request.POST)
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            result = Order.objects.get_sold_products(start_date, end_date)
+            fieldnames = result[0].keys()
+            path = r"C:\report\report.csv"
+            with open(path, 'w', newline='', encoding='utf-8') as file:
+                writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+                writer.writeheader()
+
+                for row in result:
+                    writer.writerow(row)
+                messages.success(request, 'گزارش تهیه شد')
+                return redirect('home:home')
+        return render(request, self.template_name, {'form': form})
