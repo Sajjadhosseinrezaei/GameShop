@@ -52,7 +52,8 @@ class OrderCreateView(LoginRequiredMixin, View):
             OrderItem.objects.create(order=order, price=item['price'],
                                      product=item['product'],
                                      quantity=item['quantity'])
-            cart.clear()
+
+        cart.clear()
         return redirect('order:detail_order', order.id)
 
 
