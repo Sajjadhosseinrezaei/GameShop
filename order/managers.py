@@ -8,6 +8,7 @@ class OrderManager(models.Manager):
                                            ).select_related('items__product').values(
             'user__full_name',
             'items__product__name',
-            'items__quantity'
+            'items__quantity',
+            'updated'
         )
         return output

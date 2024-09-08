@@ -20,9 +20,14 @@
         <p class="alert alert-{{ msg.tags }}">{{ msg }}</p>
     {% endfor %}
    {% endif %}
-    <div class="content">
-        {% block content %}
-    {% endblock %}
-    </div>
+{% block header %}
+	
+{% endblock %}
+{% block body %}
+	
+{% endblock %}
+{% block footer %}
+	
+{% endblock %}
 </body>
 </html>

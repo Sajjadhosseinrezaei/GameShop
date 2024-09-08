@@ -6,6 +6,5 @@ class AddCartForm(forms.Form):
 
 
 class OutputForm(forms.Form):
-    start_date = forms.DateTimeField(label='از این تاریخ')
-    end_date = forms.DateTimeField(label='تا این تاریخ')
-
+    start_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date'}), label='از این تاریخ')
+    end_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'date'}), label='تا این تاریخ')
