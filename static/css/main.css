@@ -1,0 +1,18 @@
+.header-text{
+    background-image: url("/static/img/pixlr-image-generator-50367091-7f86-44b9-8b10-c1f64b2cc801.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 50vh;
+}
+body{
+    background-color: darkgrey !important;
+}
+
+
+.item-text{
+   text-align: center;
+    color: white;
+
+}

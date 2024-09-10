@@ -1,10 +1,17 @@
 {% extends 'index.html' %}
-{% block content %}
-<form method="post" class="form-control">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="ورود">
-    <br><br>
-    <a href="{% url 'accounts:register' %}">ثبت نام</a>
-</form>
+{% block body %}
+    <div class="container text-center bg-dark rounded mt-5 d-flex justify-content-center flex-column">
+        <div class="form-login d-flex justify-content-center">
+            <form method="post" class="form-group">
+                {% csrf_token %}
+                {{ form.email }}
+                {{ form.password }}
+                <button class="btn btn-success m-3 " type="submit">تایید</button>
+                <a class="link btn-link m-3 " href="{% url 'accounts:register' %}">حساب کاربری ندارید؟ کلیک کنید</a>
+                <a class="link btn-link m-3 " href="http://127.0.0.1:8000/admin">برای ورود ادمین کلیک کنید</a>
+
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

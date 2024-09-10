@@ -1,22 +1,29 @@
 {% extends 'index.html' %}
-{% block content %}
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img width="50%" height="100%" src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{ product.price }}</small></p>
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <!-- تصویر محصول -->
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="تصویر محصول">
                 </div>
+            </div>
+            <!-- جزئیات محصول -->
+            <div class="col-md-6">
+                <h2 class="mb-4">{{ product.name }}</h2>
+                <h4 class="text-success mb-3">{{ product.price }} تومان</h4>
+                <p class="mb-4">{{ product.description }}</p>
+
+                <!-- فرم خرید -->
+                <form action="{% url 'order:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">تعداد</label>
+                        {{ form.quantity }}
+                    </div>
+                    <input type="submit" class="btn btn-primary w-100" value="افزودن به سبد خرید" min="1" max="100">
+                </form>
             </div>
         </div>
     </div>
-    <form action="{% url 'order:cart_add' product.id %}" method="post">
-    {% csrf_token %}
-    {{ form.as_div}}
-    <input type="submit" value="اضافه به سبد خرید">
-    </form>
 {% endblock %}

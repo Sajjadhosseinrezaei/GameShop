@@ -1,39 +1,43 @@
 {% extends 'index.html' %}
-{% block content %}
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">نام محصول</th>
-            <th scope="col">قیمت</th>
-            <th scope="col">تعداد</th>
-            <th scope="col">قیمت کل</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in cart %}
-        <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ item.product }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.total_price }}</td>
-            <td><a href="{% url 'order:cart_remove' item.product.id %}">حذف</a></td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td>
-                قیمت کل
-            </td>
-            <td colspan="4">
-
-            </td>
-            <td>
-                {{ cart.get_total_price }}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="{% url 'order:create_order' %}" class="btn btn-primary">ثبت خرید</a>
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">سبد خرید شما</h2>
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                سبد خرید
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>نام محصول</th>
+                        <th>تعداد</th>
+                        <th>قیمت</th>
+                        <th>مجموع</th>
+                        <th>عملیات</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ item.product }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }} تومان</td>
+                            <td>{{ item.total_price }} تومان</td>
+                            <td>
+                                <a class="btn btn-sm btn-danger" href="{% url 'order:cart_remove' item.product.id %}">حذف</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-end">
+                <h5>مجموع کل: {{ cart.get_total_price }} تومان</h5>
+                <a href="{% url 'order:create_order' %}" class="btn btn-success">ثبت خرید</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -38,10 +38,11 @@ class UserChangeForm(forms.ModelForm):
         fields = ['full_name', 'email', 'password', 'is_active', 'is_admin']
 
 
-
 class UserRegistrationForm(forms.ModelForm):
-    password1 = forms.CharField(label='رمز عبور', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='تکرار رمز عبور', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='رمز عبور', widget=forms.PasswordInput(
+        attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'رمز خود را وارد کنید'}))
+    password2 = forms.CharField(label='تکرار رمز عبور', widget=forms.PasswordInput(
+        attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'تکرار رمز عبور'}))
 
     class Meta:
         model = User
@@ -50,6 +51,12 @@ class UserRegistrationForm(forms.ModelForm):
         labels = {
             'full_name': 'نام و نام خانوادگی ',
             'email': 'ایمیل',
+        }
+        widgets = {
+            'full_name': forms.TextInput(
+                attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'نام و نام خانوادگی خود را وارد کنید'}),
+            'email': forms.EmailInput(
+                attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'ایمیل خود را وارد کنید'}),
         }
 
     def clean_email(self):
@@ -73,5 +80,7 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    email = forms.CharField(max_length=100, label='ایمیل')
-    password = forms.CharField(widget=forms.PasswordInput, label='رمز عبور')
+    email = forms.CharField(max_length=100, widget=forms.EmailInput(
+        attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'ایمیل خودرا وارد کنید'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'رمز خود را وارد کنید'}))
