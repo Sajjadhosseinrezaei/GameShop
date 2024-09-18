@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order, OrderItem
 from django.contrib import messages
 import csv
+import os
 
 
 # Create your views here.
@@ -98,7 +99,7 @@ class OrderReportView(LoginRequiredMixin, View):
                 messages.warning(request,'هیچ داده ای موجود نمی باشد')
                 return render(request, 'order/order_report.html', {'form': form})
             fieldnames = result[0].keys()
-            path = r"C:\report\report.csv"
+            path = os.path.join('/app', 'report.csv')
             with open(path, 'w', newline='', encoding='utf-8') as file:
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
 
