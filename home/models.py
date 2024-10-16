@@ -1,11 +1,13 @@
 from django.db import models
 import os
 from django.utils.text import slugify
+from django.urls import reverse
 
 
 # Create your models here.
 class Category(models.Model):
-    sub_category = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='ریر دسته', related_name='scategory', null=True, blank=True)
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='ریر دسته',
+                                     related_name='scategory', null=True, blank=True)
     name = models.CharField(max_length=100, verbose_name='نام دسته بندی')
     is_sub = models.BooleanField(default=False, verbose_name='زیر دسته؟')
     slug = models.SlugField(verbose_name='اسلاگ')
@@ -17,6 +19,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('home:category', args=[self.slug,])
 
 
 class Product(models.Model):
@@ -37,6 +42,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 

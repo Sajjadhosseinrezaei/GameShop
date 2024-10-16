@@ -10,6 +10,25 @@
     </header>
 {% endblock %}
 {% block body %}
+    {% for category in categories %}
+<!-- Example split danger button -->
+<div class="btn-group" style="direction: ltr;">
+  <a href="{{ category.get_absolute_url }}"  class="btn btn-info">{{ category.name }}</a>
+  <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">باز کردن منو</span>
+  </button>
+  <ul class="dropdown-menu text-end">
+      {% for sub in category.scategory.all %}
+    <li><a class="dropdown-item" href="{{ sub.get_absolute_url }}">{{ sub.name }}</a></li>
+          {% endfor %}
+  </ul>
+</div>
+
+    {% endfor %}
+
+<br>
+
+    <br><br>
     <div class="container">
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
