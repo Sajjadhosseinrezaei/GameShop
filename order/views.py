@@ -96,10 +96,10 @@ class OrderReportView(LoginRequiredMixin, View):
             end_date = form.cleaned_data['end_date']
             result = Order.objects.get_sold_products(start_date, end_date)
             if not result:
-                messages.warning(request,'هیچ داده ای موجود نمی باشد')
+                messages.warning(request, 'هیچ داده ای موجود نمی باشد')
                 return render(request, 'order/order_report.html', {'form': form})
             fieldnames = result[0].keys()
-            path = os.path.join('/app', 'report.csv')
+            path = r"C:\report\report.csv"
             with open(path, 'w', newline='', encoding='utf-8') as file:
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
 
