@@ -1,6 +1,27 @@
 {% extends 'index.html' %}
+
 {% block body %}
-    <h3>checkout</h3>
-	{{ order.get_total_price }}
-    <a href="{% url 'order:order_pay' order.id %}" class="btn btn-primary">پرداخت</a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header bg-info text-white">
+                    سبد خرید شما
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Checkout</h3>
+                    <p class="card-text display-5">
+                        قیمت کل: <strong>{{ order.get_total_price }}</strong> تومان
+                    </p>
+                    <a href="{% url 'order:order_pay' order.id %}" class="btn btn-success btn-lg">
+                        پرداخت
+                    </a>
+                </div>
+                <div class="card-footer text-muted">
+                    با تشکر از خرید شما!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -8,7 +8,8 @@ from .managers import OrderManager
 
 
 class Order(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='order', verbose_name='کاربر')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
+                             related_name='order', verbose_name='کاربر')
     paid = models.BooleanField(default=False, verbose_name='پرداخت')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='آخرین بروزرسانی')
