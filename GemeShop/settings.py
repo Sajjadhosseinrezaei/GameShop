@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'GemeShop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_pg8000',
-        'NAME': 'shopy',
+        'NAME': 'shop',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': '',

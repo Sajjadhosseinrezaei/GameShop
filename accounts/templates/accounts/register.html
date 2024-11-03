@@ -20,7 +20,8 @@
         <div class="form-login d-flex justify-content-center">
             <form method="post" class="form-group">
                 {% csrf_token %}
-                {{ form.full_name }}
+                {{ form.name }}
+                {{ form.family }}
                 {{ form.email }}
                 {{ form.password1 }}
                 {{ form.password2 }}

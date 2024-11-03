@@ -10,7 +10,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['full_name', 'email']
+        fields = ['name', 'family', 'email']
 
     def clean_password2(self):
         password1 = self.cleaned_data['password1']
@@ -35,7 +35,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['full_name', 'email', 'password', 'is_active', 'is_admin']
+        fields = ['name', 'family', 'email', 'password', 'is_active', 'is_admin']
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -46,15 +46,18 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['full_name', 'email']
+        fields = ['name', 'family', 'email']
 
         labels = {
-            'full_name': 'نام و نام خانوادگی ',
+            'name': 'نام  ',
+            'family': 'نام خانوادگی ',
             'email': 'ایمیل',
         }
         widgets = {
-            'full_name': forms.TextInput(
-                attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'نام و نام خانوادگی خود را وارد کنید'}),
+            'name': forms.TextInput(
+                attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'نام  خود را وارد کنید'}),
+            'family': forms.TextInput(
+                attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'نام  خانوادگی خود را وارد کنید'}),
             'email': forms.EmailInput(
                 attrs={'class': 'form-control m-3 is-invalid', 'placeholder': 'ایمیل خود را وارد کنید'}),
         }

@@ -3,6 +3,9 @@ from django.views import View
 from .models import Product, Category
 from django.shortcuts import get_object_or_404
 from order.forms import AddCartForm
+from order.models import Order
+from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.models import User
 
 
 # Create your views here.
@@ -28,3 +31,9 @@ class ProductDetailView(View):
 
 
 
+class ProfileView(LoginRequiredMixin,View):
+    template_name = 'home/profile.html'
+    def get(self, request, id):
+        user = get_object_or_404(User, id=id)
+        orders = Order.objects.filter(user=user)
+        return render(request, self.template_name, {'user': user, 'orders': orders})

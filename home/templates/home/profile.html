@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block body %}
+<div class="container mt-5">
+    <!-- کارت اطلاعات کاربر -->
+    <div class="card bg-light mb-4">
+        <div class="card-body text-center">
+            <h4 class="card-title">پروفایل کاربری</h4>
+            <p class="card-text">نام: {{ user.name }}</p>
+            <p class="card-text">نام خانوادگی: {{ user.family }}</p>
+        </div>
+    </div>
+
+    <!-- لیست سفارش‌ها -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">سفارش‌ها</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% if orders %}
+                {% for order in orders %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>شناسه سفارش: {{ order.id }}</span>
+                        <span class="badge {{ order.paid|yesno:'bg-success,bg-danger' }}">{{ order.paid|yesno:"پرداخت شده,پرداخت نشده" }}</span>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item text-center text-muted">سفارشی یافت نشد.</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

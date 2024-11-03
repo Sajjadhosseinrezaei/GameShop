@@ -21,7 +21,7 @@ class UserRegistrationView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.create_user(full_name=cd['full_name'], email=cd['email'], password=cd['password2'])
+            User.objects.create_user(name=cd['name'], family=cd['family'], email=cd['email'], password=cd['password2'])
             messages.success(request, 'شما ثبت نام شدید')
             return redirect('home:home')
 

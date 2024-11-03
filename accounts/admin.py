@@ -9,12 +9,12 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ['full_name', 'email', 'is_admin', 'last_login']
+    list_display = ['name', 'family', 'email', 'is_admin', 'last_login']
     list_filter = ['is_admin']
 
     fieldsets = [
         (
-            None, {'fields': ['full_name', 'email', 'password', 'last_login']}
+            None, {'fields': ['name', 'family', 'email', 'password', 'last_login']}
         ),
         (
             "Permissions", {'fields': ['is_admin', 'is_active', 'is_superuser', 'groups', 'user_permissions']}
@@ -24,7 +24,7 @@ class UserAdmin(BaseUserAdmin):
         (
             None,
             {
-                'fields': ['full_name', 'email', 'password1', 'password2']
+                'fields': ['name', 'family', 'email', 'password1', 'password2']
             }
         ),
     ]
