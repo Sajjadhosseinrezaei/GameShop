@@ -13,6 +13,9 @@ class Order(models.Model):
     paid = models.BooleanField(default=False, verbose_name='پرداخت')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='آخرین بروزرسانی')
+    address = models.CharField(blank=True, verbose_name='آدرس')
+    p_code = models.CharField(blank=True, verbose_name='کد پیگیری')
+    phone = models.CharField(max_length=11, null=True, verbose_name='تلفن')
 
     objects = OrderManager()
 

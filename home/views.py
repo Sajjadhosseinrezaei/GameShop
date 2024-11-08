@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from .models import Product, Category
 from django.shortcuts import get_object_or_404
-from order.forms import AddCartForm
+from order.forms import AddCartForm, AddPeygiriCode
 from order.models import Order
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import User
@@ -30,10 +30,22 @@ class ProductDetailView(View):
         return render(request, self.template_name, {'product': product, 'form': form})
 
 
-
-class ProfileView(LoginRequiredMixin,View):
+class ProfileView(LoginRequiredMixin, View):
     template_name = 'home/profile.html'
+    form_class = AddPeygiriCode
+
     def get(self, request, id):
         user = get_object_or_404(User, id=id)
         orders = Order.objects.filter(user=user)
-        return render(request, self.template_name, {'user': user, 'orders': orders})
+        form = AddCartForm()
+        return render(request, self.template_name, {'user': user, 'orders': orders, 'form': form})
+
+
+class OrderView(LoginRequiredMixin, View):
+    template_name = 'home/order.html'
+    form_class = AddPeygiriCode
+
+    def get(self, request, id):
+        form = self.form_class()
+        order = get_object_or_404(Order, id=id)
+        return render(request, self.template_name, {'order': order, 'form': form})

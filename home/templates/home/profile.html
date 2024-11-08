@@ -2,25 +2,34 @@
 {% block body %}
 <div class="container mt-5">
     <!-- کارت اطلاعات کاربر -->
-    <div class="card bg-light mb-4">
+    <div class="card bg-light mb-4 shadow-sm">
         <div class="card-body text-center">
-            <h4 class="card-title">پروفایل کاربری</h4>
-            <p class="card-text">نام: {{ user.name }}</p>
-            <p class="card-text">نام خانوادگی: {{ user.family }}</p>
+            <h4 class="card-title mb-4">پروفایل کاربری</h4>
+            <p class="card-text"><strong>نام:</strong> {{ user.name }}</p>
+            <p class="card-text"><strong>نام خانوادگی:</strong> {{ user.family }}</p>
+
+            {% if user.is_staff %}
+                <a href="/admin" class="btn btn-secondary mt-3">ورود به بخش مدیریت</a>
+            {% endif %}
         </div>
     </div>
 
     <!-- لیست سفارش‌ها -->
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">سفارش‌ها</h5>
         </div>
         <ul class="list-group list-group-flush">
             {% if orders %}
                 {% for order in orders %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>شناسه سفارش: {{ order.id }}</span>
-                        <span class="badge {{ order.paid|yesno:'bg-success,bg-danger' }}">{{ order.paid|yesno:"پرداخت شده,پرداخت نشده" }}</span>
+                    <li class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-center">
+                        <div class="d-flex flex-column align-items-start">
+                            <span class="fw-bold">شناسه سفارش: {{ order.id }}</span>
+                            <span class="text-muted">وضعیت:
+                                <span class="badge {{ order.paid|yesno:'bg-success,bg-danger' }}">{{ order.paid|yesno:"پرداخت شده,پرداخت نشده" }}</span>
+                            </span>
+                        </div>
+                    <a href="{% url 'home:order' order.id %}" class="btn btn-primary">مشاهده سفارش</a>
                     </li>
                 {% endfor %}
             {% else %}

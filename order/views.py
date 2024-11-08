@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from home.models import Product
-from .forms import AddCartForm, OutputForm
+from .forms import AddCartForm, OutputForm, AddAddressForm, AddPeygiriCode
 from .cart import Cart
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order, OrderItem
@@ -60,6 +60,7 @@ class OrderCreateView(LoginRequiredMixin, View):
 
 class OrderPayView(LoginRequiredMixin, View):
     template_name = 'order/payment.html'
+    form_class = AddAddressForm
 
     def dispatch(self, request, *args, **kwargs):
         order = Order.objects.get(id=kwargs['order_id'])
@@ -70,16 +71,34 @@ class OrderPayView(LoginRequiredMixin, View):
 
     def get(self, request, order_id):
         order = Order.objects.get(id=order_id)
-        return render(request, self.template_name, {'order': order})
+        form = self.form_class
+        return render(request, self.template_name, {'order': order, 'form': form})
+
+    def post(self, request, order_id):
+        order = Order.objects.get(id=order_id)
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            order.address = form.cleaned_data['address']
+            order.phone = form.cleaned_data['phone']
+            order.save()
+            messages.success(request, "آدرس شما ثبت گردید از منو پروفایل خرید خود را بررسی کنید")
+            return redirect('home:home')
+        return render(request, self.template_name, {'order': order, 'form': form})
 
 
 class OrderPayVerifyView(LoginRequiredMixin, View):
-    def get(self, request, order_id):
+    form = AddPeygiriCode
+
+    def post(self, request, order_id):
         order = Order.objects.get(id=order_id)
-        order.paid = True
-        order.save()
-        messages.success(request, "پرداخت با موفقیت انجام شد")
-        return redirect('home:home')
+        form = AddPeygiriCode(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            order.p_code = cd['code']
+            order.save()
+            messages.success(request, "کد با موفقیت ارسال شد منتظر باشید طی ساعاتی بعد ادمین سفارش شمارا تایید کند")
+            return redirect('home:home')
 
 
 class OrderReportView(LoginRequiredMixin, View):

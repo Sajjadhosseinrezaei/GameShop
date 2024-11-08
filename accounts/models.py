@@ -16,10 +16,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = MyUserManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name', 'family']
 
     def __str__(self):
-        return self.full_name
+        return self.name
 
     @property
     def is_staff(self):

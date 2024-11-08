@@ -6,7 +6,8 @@ class OrderManager(models.Manager):
         output = self.model.objects.filter(paid=True,
                                            updated__range=(start_date, end_date)
                                            ).select_related('items__product').values(
-            'user__full_name',
+            'user__name',
+            'user__family',
             'items__product__name',
             'items__quantity',
             'updated'

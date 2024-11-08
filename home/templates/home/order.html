@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% block body %}
+<div class="container mt-5">
+    <!-- اطلاعات سفارش -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0 text-center">جزئیات سفارش</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-center">شناسه سفارش: <span class="badge bg-info text-dark">{{ order.id }}</span></h5>
+            <hr>
+
+            <!-- آیتم‌های سفارش -->
+            <h6 class="text-muted">آیتم‌های سفارش:</h6>
+            <div class="list-group">
+                {% for item in order.items.all %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="fw-bold">{{ item.product }}</div>
+                        <span class="text-muted">تعداد: {{ item.quantity }}</span>
+                        <span class="text-primary">{{ item.price }} تومان</span>
+                    </div>
+                {% empty %}
+                    <p class="text-muted">هیچ آیتمی در این سفارش وجود ندارد.</p>
+                {% endfor %}
+            </div>
+
+            <!-- قیمت کل -->
+            <div class="mt-4 text-center">
+                <h5><strong>قیمت کل: </strong> <span class="text-success">{{ order.get_total_price }} تومان</span></h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- فرم کد پیگیری -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0 text-center">وارد کردن کد پیگیری پرداخت</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted text-center">لطفاً کد پیگیری خود را وارد کنید:</p>
+            <form method="post" action="{% url 'order:order_verify' order.id %}" class="d-flex flex-column align-items-center">
+                {% csrf_token %}
+                <div class="mb-3" style="width: 100%; max-width: 400px;">
+                    {{ form.code }}
+                </div>
+                <input type="submit" class="btn btn-primary" value="ثبت کد پیگیری">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
