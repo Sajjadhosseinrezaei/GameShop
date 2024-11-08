@@ -7,7 +7,8 @@ from django.urls import reverse
 # Create your models here.
 class Category(models.Model):
     sub_category = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='ریر دسته',
-                                     related_name='scategory', null=True, blank=True)
+                                     related_name='scategory', null=True, blank=True,
+                                     help_text='با کلیک بر روی دکمه اضافه کردن دسته بندی، می توانید دسته بندی های جدید را ایجاد کرده و همچنین با زدن تیک گزینه ایجاد زیر دسته، برای دسته بندی های ساخته شده یک زیر دسته ایجاد کنید!')
     name = models.CharField(max_length=100, verbose_name='نام دسته بندی')
     is_sub = models.BooleanField(default=False, verbose_name='زیر دسته؟')
     slug = models.SlugField(verbose_name='اسلاگ')
