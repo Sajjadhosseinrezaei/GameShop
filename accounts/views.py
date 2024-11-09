@@ -21,7 +21,11 @@ class UserRegistrationView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.create_user(name=cd['name'], family=cd['family'], email=cd['email'], password=cd['password2'])
+            user = User.objects.create_user(name=cd['name'], family=cd['family'], email=cd['email'],
+                                            password=cd['password2'])
+            user = authenticate(email=cd['email'], password=cd['password2'])
+            if user is not None:
+                login(request, user)
             messages.success(request, 'شما ثبت نام شدید')
             return redirect('home:home')
 

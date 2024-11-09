@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3cca5f05-66cc-40c9-89f3-52971d9e8d90" name="Changes" comment="migrations for change and add models">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +178,10 @@
       <workItem from="1730956662383" duration="667000" />
       <workItem from="1730981695849" duration="2601000" />
       <workItem from="1731066848526" duration="5000" />
-      <workItem from="1731072854708" duration="353000" />
+      <workItem from="1731072854708" duration="4539000" />
+      <workItem from="1731084133708" duration="1396000" />
+      <workItem from="1731097642431" duration="1507000" />
+      <workItem from="1731130439309" duration="470000" />
     </task>
     <task id="LOCAL-00001" summary="migrations for change and add models">
       <option name="closed" value="true" />
