@@ -118,7 +118,7 @@ class OrderReportView(LoginRequiredMixin, View):
                 messages.warning(request, 'هیچ داده ای موجود نمی باشد')
                 return render(request, 'order/order_report.html', {'form': form})
             fieldnames = result[0].keys()
-            path = r"C:\report\report.csv"
+            path = r"/home/sajjadhossein/Desktop/GameShop"
             with open(path, 'w', newline='', encoding='utf-8') as file:
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
 
