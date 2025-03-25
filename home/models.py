@@ -12,6 +12,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='نام دسته بندی')
     is_sub = models.BooleanField(default=False, verbose_name='زیر دسته؟')
     slug = models.SlugField(verbose_name='اسلاگ')
+    discription = models.TextField(verbose_name='توضیحات', null=True, blank=True)
 
     class Meta:
         ordering = ['name']
