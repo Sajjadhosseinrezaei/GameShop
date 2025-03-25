@@ -1,58 +1,79 @@
 {% extends 'index.html' %}
-{% block header %}
-    <header>
-        <div class="container-fluid mb-2" style="padding: 10px 0;"> <!-- کاهش پدینگ برای کوچکتر شدن هدر -->
-            <div class="header-text row align-items-center">
-                <h2 class="title-heading item-text" style="font-size: 1.8rem; margin-bottom: 0.5rem;">گیم سنتر<br/>به سایت ما خوش آمدید</h2>
-                <h3 class="item-text" style="font-size: 1.2rem;">فروش انواع لپتاپ و تجهیزات گیمینگ</h3>
-            </div>
-        </div>
-    </header>
-{% endblock %}
 
 {% block body %}
+<div class="container">
+    <div class="hero-slider">
+        <h1>به دنیای گیمینگ خوش آمدید!</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="" class="text-decoration-none">
+                <div class="category-card">
+                    <h3>کنسول‌ها</h3>
+                    <p>جدیدترین کنسول‌های PS5، Xbox و Nintendo</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="" class="text-decoration-none">
+                <div class="category-card">
+                    <h3>PC گیمینگ</h3>
+                    <p>قطعات و سیستم‌های آماده برای گیمرها</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="" class="text-decoration-none">
+                <div class="category-card">
+                    <h3>لوازم جانبی</h3>
+                    <p>هدست، کیبورد و ماوس گیمینگ</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Separate Featured Products Section -->
+<section class="featured-section">
     <div class="container">
-        <div class="row text-center mb-4">
-            <div class="d-flex justify-content-end flex-wrap">
-                {% for category in categories %}
-                    <div class="btn-group me-2 mb-2" style="direction: ltr;">
-                        <a href="{{ category.get_absolute_url }}" class="btn btn-info">{{ category.name }}</a>
-                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">باز کردن منو</span>
-                        </button>
-                        <ul class="dropdown-menu text-end">
-                            {% for sub in category.scategory.all %}
-                                <li><a class="dropdown-item" href="{{ sub.get_absolute_url }}">{{ sub.name }}</a></li>
-                            {% endfor %}
-                        </ul>
+        <h2 class="text-center mb-4">برگزیده محصولات</h2>
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <a href="#" class="text-decoration-none">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="کنسول PS5">
+                        <h5>کنسول PS5</h5>
+                        <p>۲۵,۰۰۰,۰۰۰ تومان</p>
                     </div>
-                {% endfor %}
+                </a>
+            </div>
+            <div class="col-md-3 col-6">
+                <a href="#" class="text-decoration-none">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1587202372634-3910e1e8f4d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="ماوس گیمینگ">
+                        <h5>ماوس گیمینگ</h5>
+                        <p>۱,۵۰۰,۰۰۰ تومان</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-6">
+                <a href="#" class="text-decoration-none">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab7ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="کیبورد RGB">
+                        <h5>کیبورد RGB</h5>
+                        <p>۲,۰۰۰,۰۰۰ تومان</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-6">
+                <a href="#" class="text-decoration-none">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1591294100785-81ab57a5e6e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="هدست گیمینگ">
+                        <h5>هدست گیمینگ</h5>
+                        <p>۳,۲۰۰,۰۰۰ تومان</p>
+                    </div>
+                </a>
             </div>
         </div>
-
-
-        <!-- Product cards section -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            {% for product in products %}
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <a href="#">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                                 class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.price }} تومان</p>
-                            <p class="card-text">{{ product.description }}</p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{% url 'home:detail' product.slug %}" class="btn btn-primary">دیدن محصول</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
     </div>
+</section>
 {% endblock %}

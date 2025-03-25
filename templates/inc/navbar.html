@@ -1,40 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'home:home' %}">خانه</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                {% if not request.user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:register' %}">ثبت نام</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:login' %}">ورود</a>
-                    </li>
-                {% else %}
-                    {% if request.user.is_admin %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'order:order_report' %}">گزارش گیری</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://127.0.0.1:8000/admin">مدیریت</a>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:profile' request.user.id %}">پروفایل</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}">خروج</a>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'order:cart_detail' %}">
-                        سبد خرید <span class="badge bg-light text-dark">{{ cart|length }}</span>
-                    </a>
-                </li>
-            </ul>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <svg width="200" height="60" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00cc99;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <path d="M10,20 Q15,10 20,20 T30,20 H40 Q45,10 50,20 T60,20 H70 Q75,10 80,20 T90,20 V40 H10 V20 Z" fill="#1a1a1a" stroke="#00ffcc" stroke-width="2"/>
+                        <circle cx="25" cy="30" r="3" fill="#ff1e56"/>
+                        <circle cx="35" cy="30" r="3" fill="#ff1e56"/>
+                        <rect x="55" y="25" width="5" height="5" fill="#ff1e56"/>
+                        <rect x="65" y="25" width="5" height="5" fill="#ff1e56"/>
+                    </g>
+                    <text x="100" y="40" font-family="Vazir, sans-serif" font-size="24" font-weight="bold" fill="url(#textGradient)">
+                        گیم استور
+                    </text>
+                </svg>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">خانه</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">محصولات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">دسته‌بندی‌ها</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">پیشنهادات ویژه</a></li>
+                </ul>
+                <form class="d-flex search-bar">
+                    <input class="form-control me-2" type="search" placeholder="جستجو..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">ورود/ثبت‌نام</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
